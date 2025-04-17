@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>대시보드</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script>
+    if (localStorage.getItem("loggedIn") !== "true") {
+      alert("접근 권한이 없습니다.");
+      window.location.href = "index.html";
+    }
+  </script>
+  <h2>대시보드</h2>
+  <button onclick="logout()">로그아웃</button>
+
+  <section>
+    <h3>📢 알림 추가</h3>
+    <input type="text" id="noticeTitle" placeholder="제목">
+    <textarea id="noticeContent" placeholder="내용"></textarea>
+    <button onclick="addNotice()">추가</button>
+  </section>
+
+  <section>
+    <h3>📦 재고 추가</h3>
+    <input type="text" id="itemName" placeholder="품목명">
+    <input type="number" id="itemQty" placeholder="수량">
+    <input type="number" id="itemPrice" placeholder="단가">
+    <button onclick="addInventory()">추가</button>
+  </section>
+
+  <br>
+  <a href="notice.html">🔍 알림판 보기</a> |
+  <a href="inventory.html">📦 재고 보기</a>
+
+  <script src="script.js"></script>
+</body>
+</html>

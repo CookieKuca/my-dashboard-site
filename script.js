@@ -1,6 +1,7 @@
-
+// 로그인 처리
 const ADMIN = { id: "admin", pw: "1234" };
 
+// 로그인 시
 document.getElementById("loginForm")?.addEventListener("submit", function (e) {
   e.preventDefault();
   const id = document.getElementById("username").value;
@@ -8,17 +9,19 @@ document.getElementById("loginForm")?.addEventListener("submit", function (e) {
 
   if (id === ADMIN.id && pw === ADMIN.pw) {
     localStorage.setItem("loggedIn", "true");
-    window.location.href = "dashboard.html";
+    window.location.href = "dashboard.html"; // 대시보드로 이동
   } else {
     alert("아이디 또는 비밀번호가 틀렸습니다.");
   }
 });
 
+// 로그아웃 시
 function logout() {
   localStorage.removeItem("loggedIn");
-  window.location.href = "index.html";
+  window.location.href = "index.html"; // 로그인 페이지로 이동
 }
 
+// 알림 추가
 function addNotice() {
   const title = document.getElementById("noticeTitle").value;
   const content = document.getElementById("noticeContent").value;
@@ -33,19 +36,21 @@ function addNotice() {
   document.getElementById("noticeContent").value = "";
 }
 
+// 알림 목록 표시
 function displayNotices() {
   const container = document.getElementById("noticeList");
   const notices = JSON.parse(localStorage.getItem("notices") || "[]");
 
-  container.innerHTML = notices.map(n => \`
+  container.innerHTML = notices.map(n => `
     <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;">
-      <h4>\${n.title}</h4>
-      <p>\${n.content}</p>
-      <small>\${n.date}</small>
+      <h4>${n.title}</h4>
+      <p>${n.content}</p>
+      <small>${n.date}</small>
     </div>
-  \`).join('');
+  `).join('');
 }
 
+// 재고 추가
 function addInventory() {
   const name = document.getElementById("itemName").value;
   const qty = parseInt(document.getElementById("itemQty").value);
@@ -67,14 +72,15 @@ function addInventory() {
   document.getElementById("itemPrice").value = "";
 }
 
+// 재고 목록 표시
 function displayInventory() {
   const container = document.getElementById("inventoryList");
   const items = JSON.parse(localStorage.getItem("inventory") || "[]");
 
-  container.innerHTML = items.map(i => \`
+  container.innerHTML = items.map(i => `
     <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;">
-      <strong>\${i.name}</strong> - \${i.qty}개 × \${i.price}원<br>
-      <small>\${i.date}</small>
+      <strong>${i.name}</strong> - ${i.qty}개 × ${i.price}원<br>
+      <small>${i.date}</small>
     </div>
-  \`).join('');
+  `).join('');
 }
